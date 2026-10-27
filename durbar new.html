@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#006a4e">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- SECURITY: Content-Security-Policy (শুধু বিশ্বস্ত সোর্স থেকে কোড/ডাটা লোড হবে) -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src https://cdnjs.cloudflare.com https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; connect-src https://*.firebaseio.com https://identitytoolkit.googleapis.com https://api.web3forms.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>দূর্বার মুক্ত স্কাউট দল, বড়লেখা, মৌলভীবাজার</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{scoutGreen:'#006a4e',scoutGreenDark:'#004d38',scoutNavy:'#0a192f',scoutGold:'#f59e0b'}}}}
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Hind Siliguri',sans-serif}
+html{scroll-padding-top:80px}
+::selection{background:#f59e0b;color:#0a192f}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-thumb{background:#006a4e;border-radius:10px}
+@media print{.no-print{display:none!important}.print-only{display:block!important}body{background:#fff;color:#000}}
+.print-only{display:none}
+.tabContent{animation:rise .35s both}
+@keyframes rise{from{opacity:0;transform:translateY(26px)}}
+@keyframes fade{from{opacity:0}}
+@keyframes pop{from{opacity:0;transform:scale(.94) translateY(10px)}}
+@keyframes float{50%{transform:translate(40px,30px) scale(1.15)}}
+@keyframes shine{to{background-position:-200% 0}}
+@keyframes kb{to{transform:scale(1.12)}}
+@keyframes tick{to{transform:translateX(-100%)}}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(245,158,11,.5)}100%{box-shadow:0 0 0 18px rgba(245,158,11,0)}}
+#scrollBar{position:fixed;top:0;left:0;height:3px;width:0;z-index:100;background:linear-gradient(90deg,#f59e0b,#10b981)}
+header{transition:background .35s,box-shadow .35s}
+header.glass{background:rgba(0,106,78,.82)!important;backdrop-filter:blur(14px) saturate(160%);box-shadow:0 10px 30px rgba(0,0,0,.22)}
+header nav a{position:relative;padding:4px 0}
+header nav a::after{content:'';position:absolute;left:0;bottom:-3px;height:2px;width:0;background:#f59e0b;transition:width .3s}
+header nav a:hover::after,header nav a.active::after{width:100%}
+header nav a.active{color:#f59e0b}
+#menuBtn{display:none;width:40px;height:40px;border-radius:12px;place-items:center;background:rgba(255,255,255,.12);color:#fff}
+#mobMenu{position:fixed;left:0;right:0;top:var(--hh,70px);z-index:39;display:none;flex-direction:column;background:rgba(10,25,47,.96);backdrop-filter:blur(14px);padding:8px 16px 16px}
+#mobMenu.open{display:flex;animation:fade .25s}
+#mobMenu a{color:#fff;padding:12px 4px;border-bottom:1px solid rgba(255,255,255,.08);font-weight:600}
+#mobMenu a.active{color:#f59e0b}
+@media(max-width:767px){#menuBtn{display:grid}}
+@media(max-width:520px){#adminBtnText{display:none}}
+.ticker{overflow:hidden;white-space:nowrap;flex:1}
+.ticker span{display:inline-block;padding-left:100%;animation:tick 24s linear infinite}
+.ticker:hover span{animation-play-state:paused}
+#hero{min-height:86vh;display:flex;align-items:center}
+#hero>div.relative{z-index:1;width:100%}
+#hero::before,#hero::after{content:'';position:absolute;border-radius:50%;filter:blur(70px);opacity:.35;pointer-events:none;animation:float 12s ease-in-out infinite}
+#hero::before{width:380px;height:380px;background:#10b981;top:-90px;left:-90px}
+#hero::after{width:320px;height:320px;background:#f59e0b;bottom:-90px;right:-70px;animation-delay:-6s}
+#heroBg{animation:kb 24s ease-in-out infinite alternate}
+#heroTitle{background:linear-gradient(90deg,#fff,#fde68a,#fff);background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+#hero div.relative>*{animation:rise .9s cubic-bezier(.2,.7,.2,1) backwards}
+#hero div.relative>*:nth-child(2){animation-delay:.12s}#hero div.relative>*:nth-child(3){animation-delay:.24s}#hero div.relative>*:nth-child(4){animation-delay:.36s}
+#hero a.bg-scoutGreen{animation:ring 2.4s infinite}
+.reveal{opacity:0}
+.reveal.in{opacity:1;animation:rise .75s cubic-bezier(.2,.7,.2,1) backwards;animation-delay:var(--d,0s)}
+.stat-card{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border:1px solid rgba(0,106,78,.12);border-radius:20px;padding:20px 10px;text-align:center;box-shadow:0 14px 40px rgba(10,25,47,.12);display:flex;flex-direction:column;align-items:center;transition:transform .3s}
+.stat-card:hover{transform:translateY(-6px)}
+.stat-card i{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,#006a4e,#10b981);font-size:18px;margin-bottom:8px}
+.stat-card b{font-size:30px;font-weight:800;color:#0a192f;line-height:1.1}
+.stat-card span{font-size:12px;color:#64748b;font-weight:600}
+.act-card{padding:26px;border-radius:20px;background:linear-gradient(160deg,#fff,#f0fdf4);border:1px solid #d1fae5;transition:transform .35s,box-shadow .35s,border-color .35s}
+.act-card:hover{transform:translateY(-8px);box-shadow:0 20px 45px rgba(0,106,78,.18);border-color:#10b981}
+.act-card i{font-size:26px;color:#006a4e;margin-bottom:12px;display:block;transition:transform .35s,color .35s}
+.act-card:hover i{transform:scale(1.2) rotate(-6deg);color:#f59e0b}
+.act-card h4{font-weight:700;color:#0a192f;margin-bottom:6px}.act-card p{font-size:14px;color:#475569;line-height:1.7}
+#memberGrid>div,#leadersGrid>div,#achievementsGrid>div,#galleryGrid>div{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s}
+#memberGrid>div:hover,#leadersGrid>div:hover,#achievementsGrid>div:hover,#galleryGrid>div:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,106,78,.2);border-color:#10b981}
+#memberGrid img,#leadersGrid img,#achievementsGrid img{cursor:zoom-in;transition:transform .4s}
+#memberGrid>div:hover img,#leadersGrid>div:hover img{transform:scale(1.08)}
+#galleryGrid>div{cursor:zoom-in}
+#galleryGrid>div::after{content:'\f00e';font-family:'Font Awesome 6 Free';font-weight:900;position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.9);color:#006a4e;opacity:0;transform:scale(.7);transition:.3s;pointer-events:none}
+#galleryGrid>div:hover::after{opacity:1;transform:none}
+#adminAuthModal:not(.hidden)>div,#adminDashboardModal:not(.hidden)>div{animation:pop .3s cubic-bezier(.2,.8,.2,1)}
+.adminTabBtn{white-space:nowrap;color:#4b5563;border-bottom:2px solid transparent}
+.adminTabBtn.active{color:#006a4e;border-bottom-color:#006a4e}
+#toTop{position:fixed;right:18px;bottom:20px;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#006a4e,#10b981);color:#fff;box-shadow:0 10px 25px rgba(0,106,78,.4);z-index:60;opacity:0;transform:translateY(20px);pointer-events:none;transition:.3s}
+#toTop.show{opacity:1;transform:none;pointer-events:auto}
+#toastBox{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:400;display:flex;flex-direction:column;gap:8px;align-items:center;width:max-content;max-width:92vw}
+.toast{background:#0a192f;color:#fff;padding:11px 18px;border-radius:14px;font-size:14px;font-weight:600;box-shadow:0 12px 30px rgba(0,0,0,.3);border-left:4px solid #10b981;animation:rise .35s}
+.toast.err{border-left-color:#ef4444}.toast.out{opacity:0;transition:.4s}
+#lb{position:fixed;inset:0;z-index:300;display:none;align-items:center;justify-content:center;flex-direction:column;background:rgba(4,10,20,.95);backdrop-filter:blur(10px)}
+#lb.open{display:flex;animation:fade .25s}
+#lbStage{max-width:94vw;max-height:74vh;overflow:hidden;border-radius:16px;box-shadow:0 30px 90px rgba(0,0,0,.65)}
+#lbImg{display:block;max-width:94vw;max-height:74vh;object-fit:contain;cursor:zoom-in;transition:transform .35s cubic-bezier(.2,.7,.2,1);user-select:none;-webkit-user-drag:none}
+#lbImg.zoom{transform:scale(2.2);cursor:zoom-out}#lbImg.swap{animation:rise .35s}
+.lb-btn{position:absolute;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-size:18px;display:grid;place-items:center;transition:.25s;cursor:pointer}
+.lb-btn:hover{background:#f59e0b;color:#0a192f}
+.lb-close{top:18px;right:18px}.lb-prev{left:14px;top:50%;margin-top:-23px}.lb-next{right:14px;top:50%;margin-top:-23px}
+.lb-count{position:absolute;top:26px;left:20px;color:#cbd5e1;font-size:13px;font-weight:600}
+.lb-cap{margin-top:18px;text-align:center;color:#fff;padding:0 20px}.lb-cap b{display:block;font-size:17px}.lb-cap span{font-size:13px;color:#fbbf24}
+@media print{.reveal{opacity:1!important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1}}
+</style>
+</head>
+<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+<div id="scrollBar"></div>
+
+<div id="loadingOverlay" class="fixed inset-0 bg-white/95 z-50 flex items-center justify-center flex-col gap-3">
+  <div class="w-12 h-12 border-4 border-scoutGreen border-t-transparent rounded-full animate-spin"></div>
+  <p class="text-scoutGreen font-semibold text-lg">দূর্বার ক্লাউড ডাটাবেজ থেকে তথ্য লোড হচ্ছে...</p>
+</div>
+
+<header class="bg-scoutGreen text-white sticky top-0 z-40 shadow-md no-print">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+    <div class="flex items-center space-x-3 min-w-0">
+      <img id="headerLogo" src="" alt="Scout Logo" class="w-12 h-12 rounded-full border-2 border-scoutGold object-cover bg-white shrink-0">
+      <div class="min-w-0">
+        <h1 id="headerTitle" class="text-base md:text-xl font-bold leading-tight truncate">দূর্বার মুক্ত স্কাউট দল</h1>
+        <p id="headerSubtitle" class="text-xs text-green-200">বড়লেখা, মৌলভীবাজার</p>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+      <a href="#hero">হোম</a><a href="#about">আমাদের সম্পর্কে</a><a href="#members">সদস্যবৃন্দ</a><a href="#achievements">অর্জন ও পদক</a><a href="#apply">আবেদন করুন</a><a href="#gallery">গ্যালারি</a><a href="#contact">যোগাযোগ</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <button onclick="toggleAdminModal()" class="bg-scoutGold hover:bg-yellow-600 text-scoutNavy px-4 py-2 rounded-lg text-sm font-bold shadow flex items-center gap-2 transition">
+        <i class="fa-solid fa-user-shield"></i> <span id="adminBtnText">অ্যাডমিন প্যানেল</span>
+      </button>
+      <button id="menuBtn" aria-label="মেনু"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+<div id="mobMenu" class="no-print"></div>
+
+<div id="noticeTicker" class="bg-scoutGold text-scoutNavy py-2 px-4 text-sm font-semibold no-print shadow-inner hidden">
+  <div class="max-w-7xl mx-auto w-full flex items-center gap-3">
+    <span class="bg-scoutNavy text-white px-2 py-0.5 rounded text-xs font-bold shrink-0">নোটিশ</span>
+    <div class="ticker"><span id="noticeText"></span></div>
+  </div>
+</div>
+
+<main class="flex-grow">
+  <section id="hero" class="relative bg-scoutNavy text-white py-16 md:py-24 px-4 overflow-hidden">
+    <div id="heroBg" class="absolute inset-0 bg-cover bg-center opacity-20"></div>
+    <div class="relative max-w-5xl mx-auto text-center space-y-6">
+      <div class="inline-block bg-scoutGreen/80 border border-scoutGold px-4 py-1.5 rounded-full text-scoutGold font-semibold text-sm shadow">মটো: <span id="heroMotto">"সেবা"</span></div>
+      <h2 id="heroTitle" class="text-3xl md:text-6xl font-extrabold leading-tight">দূর্বার মুক্ত স্কাউট দল, বড়লেখা</h2>
+      <p id="heroSubtitle" class="text-gray-300 max-w-2xl mx-auto text-base md:text-lg">বড়লেখা, মৌলভীবাজার</p>
+      <p class="text-gray-300 max-w-2xl mx-auto text-base md:text-lg">দক্ষ, চরিত্রবান ও আদর্শ নাগরিক গড়ে তোলার প্রত্যয়ে আমরা সদা প্রস্তুত।</p>
+      <div class="flex flex-wrap justify-center gap-4 pt-4">
+        <a href="#apply" class="bg-scoutGreen hover:bg-scoutGreenDark text-white px-6 py-3 rounded-xl font-bold shadow-lg transition transform hover:-translate-y-0.5"><i class="fa-solid fa-pen-to-square mr-2"></i>অনলাইনে সদস্য আবেদন</a>
+        <a href="#members" class="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-6 py-3 rounded-xl font-bold backdrop-blur transition"><i class="fa-solid fa-users mr-2"></i>সদস্য তালিকা</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="stats" class="relative z-10 -mt-10 px-4 no-print">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="stat-card"><i class="fa-solid fa-users"></i><b data-stat="members">0</b><span>নিবন্ধিত সদস্য</span></div>
+      <div class="stat-card"><i class="fa-solid fa-award"></i><b data-stat="achievements">0</b><span>অর্জন ও পদক</span></div>
+      <div class="stat-card"><i class="fa-solid fa-camera"></i><b data-stat="gallery">0</b><span>অ্যাক্টিভিটি ছবি</span></div>
+      <div class="stat-card"><i class="fa-solid fa-user-shield"></i><b data-stat="leaders">0</b><span>সিনিয়র লিডার</span></div>
+    </div>
+  </section>
+
+  <section id="about" class="py-14 bg-white px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10"><h3 class="text-2xl md:text-3xl font-bold text-scoutGreen">আমাদের সম্পর্কে</h3><div class="w-16 h-1 bg-scoutGold mx-auto mt-2 rounded-full"></div></div>
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="space-y-4">
+          <h4 class="text-xl font-bold text-gray-800">দূর্বার মুক্ত স্কাউট দলের মূল লক্ষ্য</h4>
+          <p class="text-gray-600 leading-relaxed">দূর্বার মুক্ত স্কাউট দল, বড়লেখা, মৌলভীবাজার এলাকার যুবসমাজকে স্কাউট আন্দোলনের মাধ্যমে একজন সৎ, সুশৃঙ্খল ও আত্মনির্ভরশীল সদস্য হিসেবে গড়ে তুলতে নিরলসভাবে কাজ করে যাচ্ছে।</p>
+          <div class="bg-green-50 border-l-4 border-scoutGreen p-4 rounded shadow-sm">
+            <h5 class="font-bold text-scoutGreen mb-1">স্কাউট প্রতিজ্ঞা:</h5>
+            <p class="text-sm text-gray-700 italic">"আমি আমার আত্মমর্যাদার ওপর নির্ভর করে প্রতিজ্ঞা করছি যে, পরমেশ্বর ও আমার দেশের প্রতি কর্তব্য পালন করতে, সর্বদা অপরকে সাহায্য করতে এবং স্কাউট আইন মেনে চলতে আমি আমার যথাসাধ্য চেষ্টা করব।"</p>
+          </div>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-2xl border border-gray-200 shadow-sm">
+          <h4 class="font-bold text-lg text-scoutNavy mb-3 border-b pb-2"><i class="fa-solid fa-list-check text-scoutGreen mr-2"></i>৭টি স্কাউট আইন</h4>
+          <ol class="space-y-2 text-sm text-gray-700 font-medium">
+            <li>১. স্কাউট আত্মমর্যাদায় বিশ্বাসী।</li><li>২. স্কাউট সবার বন্ধু।</li><li>৩. স্কাউট বিনয়ী ও অনুগত।</li><li>৪. স্কাউট জীবের প্রতি সদয়।</li><li>৫. স্কাউট সর্বদা প্রফুল্ল।</li><li>৬. স্কাউট মিতব্যয়ী।</li><li>৭. স্কাউট চিন্তা, কথা ও কাজে নির্মল।</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities" class="py-14 bg-gradient-to-b from-green-50 to-white px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10"><h3 class="text-2xl md:text-3xl font-bold text-scoutNavy">আমাদের কার্যক্রম</h3><div class="w-16 h-1 bg-scoutGold mx-auto mt-2 rounded-full"></div></div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="act-card"><i class="fa-solid fa-campground"></i><h4>ক্যাম্পিং ও হাইকিং</h4><p>প্রকৃতির কোলে ক্যাম্প ও অ্যাডভেঞ্চারের মাধ্যমে সাহস ও দলগত কাজের শিক্ষা।</p></div>
+        <div class="act-card"><i class="fa-solid fa-hand-holding-heart"></i><h4>সমাজসেবা</h4><p>বৃক্ষরোপণ, পরিচ্ছন্নতা অভিযান ও দুর্যোগে মানুষের পাশে দাঁড়ানো।</p></div>
+        <div class="act-card"><i class="fa-solid fa-kit-medical"></i><h4>প্রাথমিক চিকিৎসা</h4><p>প্রাথমিক চিকিৎসা ও দুর্যোগ প্রস্তুতির হাতে-কলমে প্রশিক্ষণ।</p></div>
+        <div class="act-card"><i class="fa-solid fa-flag"></i><h4>নেতৃত্ব বিকাশ</h4><p>শৃঙ্খলা ও নেতৃত্বগুণ গড়ে তোলার ধারাবাহিক কর্মসূচি।</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="members" class="py-14 bg-gray-100 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl md:text-3xl font-bold text-scoutGreen">আমাদের স্কাউট সদস্যবৃন্দ</h3>
+        <p class="text-gray-600 text-sm mt-1">দলীয় সকল নিবন্ধিত সদস্য ও বিএসআইডি (BSID) তালিকা (মোট: <span id="memberCount">0</span> জন)</p>
+        <div class="w-16 h-1 bg-scoutGold mx-auto mt-2 rounded-full"></div>
+      </div>
+      <div class="max-w-xl mx-auto mb-8 relative">
+        <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400 text-sm"></i>
+        <input type="text" id="memberSearch" oninput="filterMembers()" placeholder="নাম, পদবি বা বিএসআইডি (BSID) দিয়ে খুঁজুন..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-scoutGreen focus:ring-2 focus:ring-scoutGreen/20 shadow-sm text-sm">
+      </div>
+      <div id="memberGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <section id="achievements" class="py-14 bg-white px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10">
+        <h3 class="text-2xl md:text-3xl font-bold text-scoutNavy flex items-center justify-center gap-2"><i class="fa-solid fa-award text-scoutGold"></i> অর্জন ও পদকপ্রাপ্তি (Hall of Fame)</h3>
+        <p class="text-gray-600 text-sm mt-1">আমাদের স্কাউট দলের জাতীয় ও আঞ্চলিক অর্জনের গৌরবোজ্জ্বল স্বীকৃতি</p>
+        <div class="w-16 h-1 bg-scoutGold mx-auto mt-2 rounded-full"></div>
+      </div>
+      <div id="achievementsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <section id="apply" class="py-14 bg-gray-50 px-4">
+    <div class="max-w-3xl mx-auto bg-white border border-gray-200 rounded-2xl shadow-lg p-6 md:p-10">
+      <div class="text-center mb-8">
+        <h3 class="text-2xl md:text-3xl font-bold text-scoutNavy">অনলাইন সদস্য আবেদন ফরম</h3>
+        <p class="text-gray-500 text-sm">দূর্বার মুক্ত স্কাউট দলে যোগ দিতে নিচের ফরমটি সঠিক তথ্য দিয়ে পূরণ করুন</p>
+      </div>
+      <form id="membershipForm" onsubmit="submitApplication(event)" class="space-y-4" autocomplete="off">
+        <input type="text" id="hpField" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">আবেদনকারীর পূর্ণ নাম *</label><input type="text" id="applicantName" required maxlength="80" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-scoutGreen outline-none"></div>
+          <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">মোবাইল নম্বর *</label><input type="tel" id="applicantPhone" required maxlength="16" placeholder="01XXXXXXXXX" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-scoutGreen outline-none"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">পিতার নাম *</label><input type="text" id="applicantFather" required maxlength="80" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-scoutGreen outline-none"></div>
+          <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">মাতার নাম *</label><input type="text" id="applicantMother" required maxlength="80" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-scoutGreen outline-none"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">জন্ম তারিখ *</label><input type="date" id="applicantDob" required class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-scoutGreen outline-none"></div>
+          <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">শিক্ষাপ্রতিষ্ঠান / পেশা *</label><input type="text" id="applicantInstitute" required maxlength="100" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-scoutGreen outline-none"></div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-700 uppercase mb-1">বাংলাদেশ স্কাউটস আইডি - BS ID (যদি থাকে)</label>
+          <div class="flex items-center"><span class="bg-gray-100 border border-r-0 rounded-l-lg p-2.5 text-sm text-gray-600 font-bold select-none">BS-</span><input type="text" id="applicantBsidNum" maxlength="20" placeholder="যেমন: 12345" class="w-full border rounded-r-lg p-2.5 text-sm focus:ring-2 focus:ring-scoutGreen outline-none"></div>
+          <p class="text-[11px] text-gray-500 mt-1">BS ID থাকলে নম্বরটি লিখুন। না থাকলে ফাঁকা রাখুন।</p>
+        </div>
+        <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">বর্তমান ঠিকানা *</label><textarea id="applicantAddress" required rows="2" maxlength="250" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-scoutGreen outline-none"></textarea></div>
+        <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">নিজের ছবি (গ্যালারি থেকে নির্বাচন করুন)</label><input type="file" id="applicantPhotoFile" accept="image/png,image/jpeg,image/webp" class="w-full text-sm text-gray-500 border border-gray-300 rounded-lg p-2"></div>
+        <button type="submit" id="submitBtn" class="w-full bg-scoutGreen hover:bg-scoutGreenDark text-white font-bold py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2"><i class="fa-solid fa-paper-plane"></i> আবেদন জমা দিন</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="gallery" class="py-14 bg-white px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-8"><h3 class="text-2xl md:text-3xl font-bold text-scoutGreen">অ্যাক্টিভিটি গ্যালারি</h3><p class="text-gray-600 text-sm mt-1">আমাদের বিভিন্ন ক্যাম্পিং, সমাজসেবা ও প্রশিক্ষণ কর্মসূচির ছবি (বড় করে দেখতে ছবিতে ক্লিক করুন)</p><div class="w-16 h-1 bg-scoutGold mx-auto mt-2 rounded-full"></div></div>
+      <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-14 bg-gray-50 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10"><h3 class="text-2xl md:text-3xl font-bold text-scoutNavy">উচ্চপদস্থ পরিচালনা পর্ষদ ও যোগাযোগ</h3><p class="text-gray-600 text-sm mt-1">দূর্বার মুক্ত স্কাউট দলের সিনিয়র লিডারশিপ ও দায়িত্বপ্রাপ্ত কর্মকর্তা</p><div class="w-16 h-1 bg-scoutGold mx-auto mt-2 rounded-full"></div></div>
+      <div id="leadersGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-scoutNavy text-gray-300 py-8 px-4 text-center border-t border-gray-800 no-print">
+  <div class="max-w-6xl mx-auto space-y-3">
+    <p class="font-bold text-white text-lg">দূর্বার মুক্ত স্কাউট দল, বড়লেখা, মৌলভীবাজার</p>
+    <p class="text-xs text-gray-400">সর্বস্বত্ব সংরক্ষিত &copy; 2026 | স্কাউটিং এর মাধ্যমে সুন্দর সমাজ গঠনে অঙ্গীকারবদ্ধ</p>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="ছবি দেখুন" class="no-print">
+  <button class="lb-btn lb-close" aria-label="বন্ধ করুন"><i class="fa-solid fa-xmark"></i></button>
+  <div class="lb-count"></div>
+  <button class="lb-btn lb-prev" aria-label="আগের ছবি"><i class="fa-solid fa-chevron-left"></i></button>
+  <button class="lb-btn lb-next" aria-label="পরের ছবি"><i class="fa-solid fa-chevron-right"></i></button>
+  <div id="lbStage"><img id="lbImg" alt=""></div>
+  <div class="lb-cap"><b></b><span></span></div>
+</div>
+<button id="toTop" class="no-print" aria-label="উপরে যান"><i class="fa-solid fa-chevron-up"></i></button>
+
+<!-- Admin login -->
+<div id="adminAuthModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden no-print">
+  <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl relative">
+    <button onclick="toggleAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+    <div class="text-center mb-6">
+      <div class="w-12 h-12 bg-green-100 text-scoutGreen rounded-full flex items-center justify-center mx-auto mb-2 text-xl"><i class="fa-solid fa-lock"></i></div>
+      <h4 class="text-lg font-bold text-gray-800">অ্যাডমিন প্যানেল লগইন</h4>
+      <p class="text-xs text-gray-500">ইমেইল ও পাসওয়ার্ড দিয়ে নিরাপদ লগইন করুন</p>
+    </div>
+    <form onsubmit="handleAdminLogin(event)" class="space-y-3">
+      <input type="email" id="adminEmail" placeholder="অ্যাডমিন ইমেইল" required autocomplete="username" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-scoutGreen outline-none">
+      <input type="password" id="adminPassword" placeholder="পাসওয়ার্ড লিখুন" required autocomplete="current-password" class="w-full border rounded-lg p-2.5 text-sm focus:ring-2 focus:ring-scoutGreen outline-none">
+      <p id="loginError" class="text-xs text-red-500 hidden"></p>
+      <button type="submit" class="w-full bg-scoutGreen hover:bg-scoutGreenDark text-white font-bold py-2.5 rounded-lg transition">লগইন করুন</button>
+    </form>
+  </div>
+</div>
+
+<!-- Admin dashboard -->
+<div id="adminDashboardModal" class="fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-2 md:p-6 hidden no-print">
+  <div class="bg-white rounded-2xl w-full max-w-5xl h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+    <div class="bg-scoutNavy text-white px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2"><i class="fa-solid fa-sliders text-scoutGold"></i><h3 class="font-bold text-lg">দূর্বার এডমিন কন্ট্রোল প্যানেল (CMS)</h3></div>
+      <div class="flex items-center gap-4">
+        <button onclick="adminLogout()" class="text-xs bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg font-bold"><i class="fa-solid fa-right-from-bracket mr-1"></i>লগআউট</button>
+        <button onclick="closeAdminDashboard()" class="text-gray-300 hover:text-white"><i class="fa-solid fa-xmark text-2xl"></i></button>
+      </div>
+    </div>
+    <div class="bg-gray-100 border-b flex overflow-x-auto text-sm font-semibold">
+      <button onclick="switchAdminTab('members')" data-tab="members" class="adminTabBtn active px-5 py-3">মেম্বারশিপ পরিচালনা</button>
+      <button onclick="switchAdminTab('branding')" data-tab="branding" class="adminTabBtn px-5 py-3">ব্র্যান্ডিং ও নোটিশ</button>
+      <button onclick="switchAdminTab('achievements')" data-tab="achievements" class="adminTabBtn px-5 py-3">অর্জন ও পদক</button>
+      <button onclick="switchAdminTab('applications')" data-tab="applications" class="adminTabBtn px-5 py-3">আবেদনসমূহ (<span id="appBadge">0</span>)</button>
+      <button onclick="switchAdminTab('gallery')" data-tab="gallery" class="adminTabBtn px-5 py-3">অ্যাক্টিভিটি গ্যালারি</button>
+      <button onclick="switchAdminTab('leaders')" data-tab="leaders" class="adminTabBtn px-5 py-3">সিনিয়র লিডারগণ</button>
+    </div>
+    <div class="flex-grow p-6 overflow-y-auto">
+      <div id="t_members" class="tabContent space-y-6"></div>
+      <div id="t_branding" class="tabContent hidden space-y-4">
+        <h4 class="font-bold text-lg border-b pb-2 text-scoutNavy">ওয়েবসাইট ব্র্যান্ডিং কনফিগারেশন</h4>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">লোগো পরিবর্তন (গ্যালারি থেকে)</label><input type="file" accept="image/png,image/jpeg,image/webp" onchange="uploadImage(this,'logo')" class="w-full text-xs text-gray-500 border rounded-lg p-2"></div>
+          <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">কভার ব্যানার পরিবর্তন (গ্যালারি থেকে)</label><input type="file" accept="image/png,image/jpeg,image/webp" onchange="uploadImage(this,'heroBg')" class="w-full text-xs text-gray-500 border rounded-lg p-2"></div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">দলের নাম</label><input type="text" id="inputHeroTitle" class="w-full border rounded-lg p-2 text-sm"></div>
+          <div><label class="block text-xs font-bold text-gray-700 uppercase mb-1">মটো / স্লোগান</label><input type="text" id="inputMotto" class="w-full border rounded-lg p-2 text-sm"></div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-700 uppercase mb-1">নোটিশ টেক্সট</label>
+          <input type="text" id="inputNotice" class="w-full border rounded-lg p-2 text-sm">
+          <label class="flex items-center gap-2 mt-2 text-sm"><input type="checkbox" id="toggleNoticeShow" class="rounded"> নোটিশ বার অন রাখুন</label>
+        </div>
+        <button onclick="saveBranding()" class="bg-scoutGreen text-white font-bold px-5 py-2 rounded-lg text-sm shadow">সেভ পরিবর্তন</button>
+      </div>
+      <div id="t_achievements" class="tabContent hidden space-y-6"></div>
+      <div id="t_applications" class="tabContent hidden space-y-4">
+        <h4 class="font-bold text-lg border-b pb-2 text-scoutNavy">অনলাইন আবেদনসমূহ</h4>
+        <div id="pendingAppsList" class="space-y-3"></div>
+      </div>
+      <div id="t_gallery" class="tabContent hidden space-y-4">
+        <h4 class="font-bold text-lg border-b pb-2 text-scoutNavy">অ্যাক্টিভিটি গ্যালারি পিকচার আপলোড (ক্যাপশনসহ)</h4>
+        <div class="bg-gray-50 p-4 border rounded-xl space-y-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div><label class="block text-xs font-bold text-gray-700 mb-1">ছবি নির্বাচন করুন (গ্যালারি থেকে) *</label><input type="file" id="galleryFileInput" accept="image/png,image/jpeg,image/webp" class="w-full text-xs text-gray-500 border rounded-lg p-2 bg-white"></div>
+            <div><label class="block text-xs font-bold text-gray-700 mb-1">অ্যাক্টিভিটির ক্যাপশন (শিরোনাম) *</label><input type="text" id="galleryCaptionInput" maxlength="120" placeholder="যেমন: বার্ষিক স্কাউট ক্যাম্পুরি ২০২৬" class="w-full border rounded-lg p-2 text-sm bg-white"></div>
+          </div>
+          <button id="galBtn" onclick="addGalleryImage()" class="bg-scoutGreen text-white font-bold px-5 py-2 rounded-lg text-xs flex items-center gap-1"><i class="fa-solid fa-upload"></i> গ্যালারিতে যোগ করুন</button>
+        </div>
+        <h5 class="font-bold text-gray-800 text-md pt-2">বর্তমান গ্যালারি ছবিসমূহ</h5>
+        <div id="adminGalleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-96 overflow-y-auto"></div>
+      </div>
+      <div id="t_leaders" class="tabContent hidden space-y-6"></div>
+    </div>
+  </div>
+</div>
+
+<div id="printSection" class="print-only p-8 bg-white text-black">
+  <div class="text-center border-b-2 border-black pb-4 mb-6">
+    <h2 class="text-2xl font-bold uppercase">দূর্বার মুক্ত স্কাউট দল</h2><p class="text-sm">বড়লেখা, মৌলভীবাজার</p>
+    <h3 class="text-lg font-bold underline mt-2">সদস্য আবেদন ফরম</h3>
+  </div>
+  <div id="printDetails" class="space-y-3 text-base"></div>
+</div>
+
+<script>
+/* ============ CONFIG ============ */
+const WEB3FORMS_KEY="eb7c98e5-b960-460f-9315-c1b6aa8385f2";
+const FIREBASE_BASE_URL="https://durbarmukhtoopenscout-77f4d-default-rtdb.firebaseio.com";
+// Firebase Console > Project settings > General > "Web API Key" এখানে বসান (এটা গোপন পাসওয়ার্ড নয়)
+const FIREBASE_API_KEY="YOUR_FIREBASE_WEB_API_KEY";
+
+const PH="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Crect width=%27100%27 height=%27100%27 fill=%27%23d1fae5%27/%3E%3Ccircle cx=%2750%27 cy=%2738%27 r=%2718%27 fill=%27%236ee7b7%27/%3E%3Cpath d=%27M16 100a34 30 0 0168 0z%27 fill=%27%236ee7b7%27/%3E%3C/svg%3E";
+const DEF={logo:PH,heroBg:"https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=1200&q=80",title:"দূর্বার মুক্ত স্কাউট দল, বড়লেখা",subtitle:"বড়লেখা, মৌলভীবাজার",motto:"সেবা",notice:"বাংলাদেশ স্কাউটস আইডি (BSID) সংক্রান্ত তথ্যের জন্য অনতিবিলম্বে যোগাযোগ করুন।",showNotice:true};
+let appData={branding:{...DEF},members:{},achievements:{},applications:{},gallery:{},leaders:{}};
+let ID_TOKEN=null,IDLE=null,HARD=null,fails=0,lockUntil=0;
+
+/* ============ SECURITY HELPERS ============ */
+const g=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"'`]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'}[c]));
+const safeImg=u=>{u=String(u||'');return(/^data:image\/(png|jpe?g|webp|gif);base64,[A-Za-z0-9+\/=]+$/.test(u)||/^https:\/\/[^\s"'<>`]+$/.test(u))?u:PH};
+const safeKey=k=>String(k).replace(/[^\w-]/g,'');
+function toast(m,t){let c=g('toastBox');if(!c){c=document.createElement('div');c.id='toastBox';document.body.appendChild(c)}const d=document.createElement('div');d.className='toast '+(t||(/সমস্যা|ব্যর্থ|ভুল|দয়া করে|সঠিক|জমা হয়নি/.test(m)?'err':''));d.textContent=m;c.appendChild(d);setTimeout(()=>d.classList.add('out'),3200);setTimeout(()=>d.remove(),3700)}
+async function api(path,method='GET',body){
+  const r=await fetch(`${FIREBASE_BASE_URL}/${path}.json${ID_TOKEN?`?auth=${ID_TOKEN}`:''}`,{method,headers:{'Content-Type':'application/json'},body:body===undefined?undefined:JSON.stringify(body)});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  return r.json();
+}
+// ছবি ছোট (compress) করে সেভ হয়; শুধু png/jpg/webp গ্রহণযোগ্য
+function toDataUrl(file,max=1000){
+  return new Promise((res,rej)=>{
+    if(!/^image\/(png|jpe?g|webp)$/.test(file.type)){toast('শুধু JPG, PNG বা WEBP ছবি দেওয়া যাবে!');return rej(new Error('type'))}
+    if(file.size>12*1024*1024){toast('ছবির সাইজ ১২MB এর বেশি হতে পারবে না!');return rej(new Error('size'))}
+    const fr=new FileReader();
+    fr.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/webp',.82))};im.onerror=()=>rej(new Error('bad'));im.src=fr.result};
+    fr.onerror=rej;fr.readAsDataURL(file);
+  });
+}
+
+/* ============ ADMIN AUTH (Firebase Authentication) ============ */
+async function handleAdminLogin(e){
+  e.preventDefault();
+  const err=g('loginError'),btn=e.target.querySelector('button[type=submit]'),show=m=>{err.textContent=m;err.classList.remove('hidden')};
+  if(Date.now()<lockUntil)return show('অনেকবার ভুল হয়েছে, ১ মিনিট পরে চেষ্টা করুন।');
+  if(FIREBASE_API_KEY.startsWith('YOUR_'))return show('FIREBASE_API_KEY সেট করা হয়নি!');
+  btn.disabled=true;
+  try{
+    const r=await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:g('adminEmail').value.trim(),password:g('adminPassword').value,returnSecureToken:true})});
+    const d=await r.json();if(!r.ok)throw new Error('auth');
+    ID_TOKEN=d.idToken;fails=0;
+    g('adminPassword').value='';err.classList.add('hidden');g('adminAuthModal').classList.add('hidden');
+    clearTimeout(HARD);HARD=setTimeout(adminLogout,55*60000);bumpIdle();
+    await loadApplications();openAdminDashboard();
+  }catch(x){fails++;if(fails>=5){lockUntil=Date.now()+60000;fails=0}show('ইমেইল বা পাসওয়ার্ড ভুল!')}
+  finally{btn.disabled=false}
+}
+function bumpIdle(){if(!ID_TOKEN)return;clearTimeout(IDLE);IDLE=setTimeout(adminLogout,15*60000)}
+['click','keydown'].forEach(ev=>document.addEventListener(ev,bumpIdle));
+function adminLogout(){ID_TOKEN=null;clearTimeout(IDLE);clearTimeout(HARD);appData.applications={};closeAdminDashboard();renderUI();toast('লগআউট সম্পন্ন হয়েছে')}
+function toggleAdminModal(){if(ID_TOKEN){loadApplications().then(openAdminDashboard);return}g('adminAuthModal').classList.toggle('hidden')}
+function openAdminDashboard(){g('adminDashboardModal').classList.remove('hidden');populateAdmin()}
+function closeAdminDashboard(){g('adminDashboardModal').classList.add('hidden')}
+function switchAdminTab(t){
+  document.querySelectorAll('.tabContent').forEach(el=>el.classList.add('hidden'));
+  document.querySelectorAll('.adminTabBtn').forEach(el=>el.classList.toggle('active',el.dataset.tab===t));
+  g('t_'+t).classList.remove('hidden');
+}
+
+/* ============ DATA LOAD ============ */
+async function loadData(){
+  try{
+    const n=['branding','members','achievements','gallery','leaders'];
+    const res=await Promise.all(n.map(k=>api(k).catch(()=>null)));
+    n.forEach((k,i)=>{if(res[i])appData[k]=res[i]});
+  }catch(e){console.error(e)}
+  finally{renderUI();g('loadingOverlay').classList.add('hidden')}
+}
+async function loadApplications(){
+  try{appData.applications=(await api('applications'))||{}}catch(e){appData.applications={}}
+  renderUI();
+}
+const list=o=>Object.keys(o||{}).map(k=>({key:k,...o[k]}));
+
+/* ============ PUBLIC RENDER ============ */
+function renderUI(){
+  const b={...DEF,...(appData.branding||{})};
+  g('headerLogo').src=safeImg(b.logo);
+  g('headerTitle').innerText=b.title;g('headerSubtitle').innerText=b.subtitle;
+  g('heroTitle').innerText=b.title;g('heroSubtitle').innerText=b.subtitle;g('heroMotto').innerText=`"${b.motto}"`;
+  g('heroBg').style.backgroundImage=`url('${safeImg(b.heroBg)}')`;
+  g('noticeTicker').classList.toggle('hidden',!b.showNotice);g('noticeText').innerText=b.notice;
+  renderMembers(list(appData.members));
+  g('memberCount').innerText=Object.keys(appData.members).length;
+  g('appBadge').innerText=Object.keys(appData.applications).length;
+  g('achievementsGrid').innerHTML=list(appData.achievements).map(a=>`
+    <div class="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-scoutGold/40 rounded-2xl p-5 shadow-md relative overflow-hidden flex items-center gap-4">
+      <div class="absolute -right-3 -bottom-3 text-scoutGold/10 text-7xl pointer-events-none"><i class="fa-solid fa-trophy"></i></div>
+      <img src="${safeImg(a.photo)}" alt="${esc(a.title)}" class="w-20 h-20 rounded-xl object-cover border-2 border-scoutGold shadow-sm shrink-0 bg-white">
+      <div class="relative z-10">
+        <span class="bg-scoutGold/20 text-scoutNavy text-[11px] font-bold px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-star text-scoutGold mr-1"></i> ${esc(a.year||'স্বীকৃতি')}</span>
+        <h4 class="font-extrabold text-scoutNavy text-md mt-1 leading-snug">${esc(a.title)}</h4>
+        <p class="text-xs text-scoutGreen font-bold mt-1"><i class="fa-solid fa-user-check mr-1"></i>${esc(a.recipient)}</p>
+      </div>
+    </div>`).join('');
+  g('galleryGrid').innerHTML=list(appData.gallery).map(x=>`
+    <div class="relative group rounded-2xl overflow-hidden shadow-md border bg-white h-64">
+      <img src="${safeImg(x.img)}" alt="${esc(x.caption)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-4">
+        <p class="text-white font-bold text-sm leading-tight flex items-center gap-1.5"><i class="fa-solid fa-camera text-scoutGold"></i> ${esc(x.caption||'অ্যাক্টিভিটি প্রোগ্রাম')}</p>
+      </div>
+    </div>`).join('');
+  g('leadersGrid').innerHTML=list(appData.leaders).map(l=>{const ph=esc(String(l.phone||'').replace(/[^\d+]/g,''));return`
+    <div class="bg-gray-50 border rounded-xl p-4 flex items-center gap-4 shadow-sm">
+      <img src="${safeImg(l.photo)}" alt="${esc(l.name)}" class="w-16 h-16 rounded-full object-cover border-2 border-scoutGreen">
+      <div>
+        <h4 class="font-bold text-gray-800">${esc(l.name)}</h4><p class="text-xs text-scoutGreen font-semibold">${esc(l.role)}</p>
+        <div class="flex gap-3 mt-2 text-xs">
+          <a href="tel:${ph}" class="text-blue-600 font-bold"><i class="fa-solid fa-phone"></i> কল করুন</a>
+          <a href="https://wa.me/88${ph}" target="_blank" rel="noopener noreferrer" class="text-green-600 font-bold"><i class="fa-brands fa-whatsapp"></i> হোয়াটসঅ্যাপ</a>
+        </div>
+      </div>
+    </div>`}).join('');
+  enhance();
+}
+function renderMembers(l){
+  g('memberGrid').innerHTML=l.map(m=>`
+    <div class="bg-white border rounded-xl p-4 shadow-sm flex items-center gap-4">
+      <img src="${safeImg(m.photo)}" alt="${esc(m.name)}" class="w-16 h-16 rounded-full object-cover border-2 border-scoutGold">
+      <div><h4 class="font-bold text-gray-800">${esc(m.name)}</h4><p class="text-xs text-scoutNavy font-semibold">${esc(m.rank)}</p>
+      <span class="inline-block bg-green-100 text-scoutGreen text-[11px] px-2 py-0.5 rounded font-bold mt-1">${esc(m.bsid||'BSID পেন্ডিং')}</span></div>
+    </div>`).join('');
+  enhance();
+}
+function filterMembers(){
+  const q=g('memberSearch').value.toLowerCase();
+  renderMembers(list(appData.members).filter(m=>(m.name||'').toLowerCase().includes(q)||(m.rank||'').toLowerCase().includes(q)||(m.bsid||'').toLowerCase().includes(q)));
+}
+
+/* ============ ADMIN: generic CRUD (members / achievements / leaders) ============ */
+const SPIN='<i class="fa-solid fa-spinner animate-spin"></i> প্রসেস হচ্ছে...',SAVE='<i class="fa-solid fa-floppy-disk"></i> সেভ করুন';
+const CRUD={
+  members:{title:'নতুন সদস্য যোগ করুন / তথ্য আপডেট করুন',icon:'fa-user-plus text-scoutGreen',list:'বর্তমান সদস্য তালিকা',round:1,main:'name',
+    f:[['name','সদস্যের নাম *','নাম লিখুন',1],['rank','পদবি (Rank) *','যেমন: স্কাউট সদস্য / মেম্বার',1],['bsid','বিএসআইডি (BSID)','BS-XXXXX',0]],
+    sub:m=>`${m.rank} | ${m.bsid||'BSID নেই'}`,photoLabel:'ছবি (গ্যালারি থেকে বেছে নিন)',done:'সদস্য তথ্য সেভ হয়েছে!'},
+  achievements:{title:'নতুন অর্জন / পদকপ্রাপ্তির তথ্য যোগ বা আপডেট করুন',icon:'fa-award text-scoutGold',list:'বর্তমান অর্জন ও পদক তালিকা',main:'title',
+    f:[['recipient','পুরস্কারপ্রাপ্ত স্কাউটের নাম *','যেমন: সুলতান সাইফ নিরব',1],['title','অর্জন / পদকের নাম *','যেমন: প্রেসিডেন্ট স্কাউট অ্যাওয়ার্ড (PS Award)',1],['year','প্রাপ্তির বছর / বিবরণ *','যেমন: ২০২৫ বা জাতীয় ক্যাম্পুরি',1]],
+    sub:a=>`${a.recipient} (${a.year||'স্বীকৃতি'})`,photoLabel:'মেডেল / ব্যাজ / স্কাউট ছবি (গ্যালারি থেকে)',done:'অর্জন ও পদকের তথ্য সেভ হয়েছে!'},
+  leaders:{title:'সিনিয়র লিডার / উচ্চপদস্থ কর্মকর্তা যোগ বা আপডেট করুন',icon:'fa-user-shield text-scoutGreen',list:'বর্তমান সিনিয়র লিডারদের তালিকা',round:1,main:'name',
+    f:[['name','লিডারের পূর্ণ নাম *','যেমন: সুলতান সাইফ নিরব',1],['role','উচ্চ পদবি (Role/Designation) *','যেমন: স্কাউট লিডার / সভাপতি',1],['phone','মোবাইল / হোয়াটসঅ্যাপ নম্বর *','01700000000',1]],
+    sub:l=>`${l.role} | 📞 ${l.phone}`,photoLabel:'প্রোফাইল ছবি (গ্যালারি থেকে নির্বাচন করুন)',done:'সিনিয়র লিডারের তথ্য সেভ হয়েছে!'}
+};
+function buildPanes(){
+  Object.entries(CRUD).forEach(([t,c])=>{
+    g('t_'+t).innerHTML=`
+    <div class="bg-gray-50 p-4 border rounded-xl space-y-3">
+      <h5 id="${t}_title" class="font-bold text-scoutNavy text-md"><i class="fa-solid ${c.icon} mr-2"></i>${c.title}</h5>
+      <input type="hidden" id="${t}_key" value="">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">${c.f.map(([k,l,p])=>`<div><label class="block text-xs font-bold text-gray-700 mb-1">${l}</label><input type="${k==='phone'?'tel':'text'}" id="${t}_${k}" maxlength="120" placeholder="${p}" class="w-full border rounded-lg p-2 text-sm bg-white"></div>`).join('')}</div>
+      <div><label class="block text-xs font-bold text-gray-700 mb-1">${c.photoLabel}</label><input type="file" id="${t}_photo" accept="image/png,image/jpeg,image/webp" class="w-full text-xs text-gray-500 border rounded-lg p-1.5 bg-white"></div>
+      <div class="flex gap-2"><button id="${t}_save" onclick="saveItem('${t}')" class="bg-scoutGreen text-white font-bold px-4 py-2 rounded-lg text-xs flex items-center gap-1 shadow">${SAVE}</button><button onclick="resetItem('${t}')" class="bg-gray-400 text-white font-bold px-4 py-2 rounded-lg text-xs">রিসেট</button></div>
+    </div>
+    <div class="space-y-2"><h5 class="font-bold text-gray-800 text-md">${c.list}</h5><div id="${t}_list" class="divide-y divide-gray-200 border rounded-xl bg-white overflow-hidden max-h-96 overflow-y-auto"></div></div>`;
+  });
+}
+async function saveItem(t){
+  const c=CRUD[t],key=g(t+'_key').value,v={};
+  for(const[k,,,req]of c.f){v[k]=g(t+'_'+k).value.trim();if(req&&!v[k])return toast('দয়া করে * চিহ্নিত সব তথ্য দিন!')}
+  if(t==='members'&&v.bsid&&!/^BS-/i.test(v.bsid))v.bsid='BS-'+v.bsid;
+  if(t==='leaders')v.phone=v.phone.replace(/[^\d+]/g,'');
+  const btn=g(t+'_save');btn.disabled=true;btn.innerHTML=SPIN;
+  try{
+    const f=g(t+'_photo').files[0];
+    v.photo=f?await toDataUrl(f):(key&&appData[t][key]?appData[t][key].photo:PH);
+    const k=key||Date.now();await api(`${t}/${k}`,'PUT',v);
+    appData[t][k]=v;renderUI();populateAdmin();resetItem(t);toast(c.done);
+  }catch(e){toast('সেভ করতে সমস্যা হয়েছে, আবার চেষ্টা করুন!')}
+  finally{btn.disabled=false;btn.innerHTML=SAVE}
+}
+function editItem(t,k){
+  const c=CRUD[t],o=appData[t][k];g(t+'_key').value=k;c.f.forEach(([f])=>g(t+'_'+f).value=o[f]||'');
+  g(t+'_title').innerText='তথ্য আপডেট করুন ('+(o[c.main]||'')+')';g(t+'_title').scrollIntoView({behavior:'smooth',block:'center'});
+}
+function resetItem(t){const c=CRUD[t];g(t+'_key').value='';c.f.forEach(([f])=>g(t+'_'+f).value='');g(t+'_photo').value='';g(t+'_title').innerHTML=`<i class="fa-solid ${c.icon} mr-2"></i>${c.title}`}
+async function removeItem(t,k){
+  if(!confirm('এই তথ্য ডিলিট করতে চান?'))return;
+  try{await api(`${t}/${k}`,'DELETE');delete appData[t][k];renderUI();populateAdmin()}catch(e){toast('ডিলিট করা যায়নি, আবার চেষ্টা করুন!')}
+}
+function populateAdmin(){
+  const b=appData.branding;
+  g('inputHeroTitle').value=b.title||'';g('inputMotto').value=b.motto||'';g('inputNotice').value=b.notice||'';g('toggleNoticeShow').checked=!!b.showNotice;
+  Object.entries(CRUD).forEach(([t,c])=>{
+    g(t+'_list').innerHTML=Object.keys(appData[t]).map(k=>{const o=appData[t][k],K=safeKey(k);return`
+      <div class="p-3 flex items-center justify-between gap-2 border-b last:border-0 hover:bg-gray-50">
+        <div class="flex items-center gap-3 min-w-0"><img src="${safeImg(o.photo)}" class="w-10 h-10 ${c.round?'rounded-full':'rounded'} object-cover border"><div class="min-w-0"><p class="font-bold text-sm text-gray-800 truncate">${esc(o[c.main])}</p><p class="text-xs text-scoutGreen font-semibold truncate">${esc(c.sub(o))}</p></div></div>
+        <div class="flex gap-2 shrink-0"><button onclick="editItem('${t}','${K}')" class="bg-blue-600 text-white text-xs px-2.5 py-1 rounded font-bold"><i class="fa-solid fa-pen"></i> এডিট</button><button onclick="removeItem('${t}','${K}')" class="bg-red-600 text-white text-xs px-2.5 py-1 rounded font-bold"><i class="fa-solid fa-trash"></i> বাদ দিন</button></div>
+      </div>`}).join('');
+  });
+  const ak=Object.keys(appData.applications);
+  g('pendingAppsList').innerHTML=ak.length?ak.map(k=>{const a=appData.applications[k],K=safeKey(k);return`
+    <div class="border rounded-xl p-4 bg-gray-50 flex flex-col md:flex-row justify-between gap-4">
+      <div class="flex gap-3"><img src="${safeImg(a.photo)}" class="w-16 h-16 rounded object-cover border">
+        <div class="text-sm"><h5 class="font-bold text-gray-800">${esc(a.name)} (${esc(a.phone)})</h5>
+        <p class="text-xs text-scoutNavy font-semibold">BSID: <span class="text-scoutGreen font-bold">${esc(a.bsid||'দেওয়া হয়নি')}</span></p>
+        <p class="text-xs text-gray-600">পিতা: ${esc(a.father)} | মাতা: ${esc(a.mother)}</p></div></div>
+      <div class="flex items-center gap-2"><button onclick="approveApp('${K}')" class="bg-scoutGreen text-white text-xs px-3 py-1.5 rounded font-bold"><i class="fa-solid fa-check mr-1"></i> Approve</button><button onclick="printForm('${K}')" class="bg-scoutNavy text-white text-xs px-3 py-1.5 rounded font-bold">Print</button><button onclick="deleteApp('${K}')" class="bg-red-600 text-white text-xs px-3 py-1.5 rounded font-bold">Delete</button></div>
+    </div>`}).join(''):'<p class="text-gray-500 text-sm italic">কোনো আবেদন নেই।</p>';
+  g('adminGalleryGrid').innerHTML=Object.keys(appData.gallery).map(k=>{const x=appData.gallery[k];return`
+    <div class="relative rounded-xl overflow-hidden border bg-white shadow-sm flex flex-col"><img src="${safeImg(x.img)}" class="w-full h-32 object-cover">
+    <div class="p-2 flex items-center justify-between bg-gray-50"><p class="text-xs font-semibold text-gray-700 truncate">${esc(x.caption||'ক্যাপশন নেই')}</p><button onclick="removeGalleryImage('${safeKey(k)}')" class="text-red-600 hover:text-red-800 text-xs font-bold shrink-0 ml-1"><i class="fa-solid fa-trash"></i></button></div></div>`}).join('');
+}
+
+/* ============ BRANDING / GALLERY ============ */
+async function saveBranding(){
+  const o=appData.branding,br={logo:o.logo||DEF.logo,heroBg:o.heroBg||DEF.heroBg,title:g('inputHeroTitle').value.trim()||DEF.title,motto:g('inputMotto').value.trim()||DEF.motto,notice:g('inputNotice').value.trim()||DEF.notice,showNotice:g('toggleNoticeShow').checked,subtitle:DEF.subtitle};
+  try{await api('branding','PUT',br);appData.branding=br;renderUI();toast('ব্র্যান্ডিং সেভ হয়েছে!')}catch(e){toast('সেভ করতে সমস্যা হয়েছে!')}
+}
+async function uploadImage(input,target){
+  if(!input.files.length)return;
+  try{const b=await toDataUrl(input.files[0],target==='logo'?400:1600);await api('branding/'+target,'PUT',b);appData.branding[target]=b;renderUI();toast('ছবি আপলোড সম্পন্ন!')}
+  catch(e){toast('আপলোড ব্যর্থ হয়েছে!')}
+  input.value='';
+}
+async function addGalleryImage(){
+  const inp=g('galleryFileInput'),cap=g('galleryCaptionInput'),btn=g('galBtn');
+  if(!inp.files.length)return toast('দয়া করে একটি ছবি সিলেক্ট করুন!');
+  btn.disabled=true;
+  try{
+    const o={img:await toDataUrl(inp.files[0],1400),caption:cap.value.trim()||'অ্যাক্টিভিটি প্রোগ্রাম'},k=Date.now();
+    await api('gallery/'+k,'PUT',o);appData.gallery[k]=o;renderUI();populateAdmin();inp.value='';cap.value='';toast('ছবি গ্যালারিতে যোগ হয়েছে!');
+  }catch(e){toast('আপলোড ব্যর্থ হয়েছে!')}
+  finally{btn.disabled=false}
+}
+async function removeGalleryImage(k){
+  if(!confirm('এই ছবিটি ডিলিট করতে চান?'))return;
+  try{await api('gallery/'+k,'DELETE');delete appData.gallery[k];renderUI();populateAdmin()}catch(e){toast('ডিলিট করা যায়নি!')}
+}
+
+/* ============ APPLICATIONS ============ */
+async function submitApplication(e){
+  e.preventDefault();
+  if(g('hpField').value)return; // bot trap
+  let last=0;try{last=+localStorage.getItem('lastApp')||0}catch(_){}
+  if(Date.now()-last<60000)return toast('দয়া করে এক মিনিট পর আবার চেষ্টা করুন।');
+  const phone=g('applicantPhone').value.replace(/[\s-]/g,'');
+  if(!/^(\+?88)?01[3-9]\d{8}$/.test(phone))return toast('সঠিক মোবাইল নম্বর দিন (যেমন: 01712345678)');
+  const raw=g('applicantBsidNum').value.trim();
+  if(raw&&!/^(BS-)?[0-9A-Za-z-]{1,20}$/i.test(raw))return toast('BS ID সঠিক নয়!');
+  const btn=g('submitBtn');btn.disabled=true;btn.innerHTML=SPIN;
+  try{
+    const f=g('applicantPhotoFile').files[0];
+    const p={name:g('applicantName').value.trim(),phone,father:g('applicantFather').value.trim(),mother:g('applicantMother').value.trim(),dob:g('applicantDob').value,institute:g('applicantInstitute').value.trim(),address:g('applicantAddress').value.trim(),bsid:raw?(/^BS-/i.test(raw)?raw.toUpperCase():'BS-'+raw):'',photo:f?await toDataUrl(f,600):PH,date:new Date().toLocaleDateString('bn-BD')};
+    try{await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:`নতুন স্কাউট আবেদন: ${p.name}`,message:`নাম: ${p.name}, ফোন: ${p.phone}, BSID: ${p.bsid||'নেই'}, ঠিকানা: ${p.address}`})})}catch(_){}
+    await api('applications/'+Date.now(),'PUT',p);
+    try{localStorage.setItem('lastApp',Date.now())}catch(_){}
+    g('membershipForm').reset();toast('আপনার আবেদনটি সফলভাবে জমা হয়েছে!');
+  }catch(x){toast('আবেদন জমা হয়নি, আবার চেষ্টা করুন!')}
+  finally{btn.disabled=false;btn.innerHTML='<i class="fa-solid fa-paper-plane"></i> আবেদন জমা দিন'}
+}
+async function approveApp(k){
+  const a=appData.applications[k];let bsid=a.bsid||'';
+  if(!bsid){const i=prompt('আবেদনকারী ফর্ম-এ BSID দেননি। অনুগ্রহ করে নির্ধারণ করুন:','BS-'+Math.floor(10000+Math.random()*90000));if(!i)return;bsid=/^BS-/i.test(i)?i.toUpperCase():'BS-'+i}
+  const nk=Date.now(),m={name:a.name,rank:'স্কাউট সদস্য',bsid,photo:a.photo};
+  try{
+    await api('members/'+nk,'PUT',m);await api('applications/'+k,'DELETE');
+    appData.members[nk]=m;delete appData.applications[k];renderUI();populateAdmin();toast(`অনুমোদন সম্পন্ন! ${a.name} সদস্য তালিকায় যুক্ত হয়েছে (${bsid})`);
+  }catch(e){toast('অনুমোদন করা যায়নি, আবার চেষ্টা করুন!')}
+}
+async function deleteApp(k){
+  if(!confirm('আবেদনটি ডিলিট করবেন?'))return;
+  try{await api('applications/'+k,'DELETE');delete appData.applications[k];renderUI();populateAdmin()}catch(e){toast('ডিলিট করা যায়নি!')}
+}
+function printForm(k){
+  const a=appData.applications[k];
+  g('printDetails').innerHTML=`<div class="flex justify-between items-start mb-6"><div>
+    <p><strong>আবেদনকারী:</strong> ${esc(a.name)}</p><p><strong>ফোন:</strong> ${esc(a.phone)}</p><p><strong>BS ID:</strong> ${esc(a.bsid||'প্রযোজ্য নয়')}</p>
+    <p><strong>পিতা:</strong> ${esc(a.father)}</p><p><strong>মাতা:</strong> ${esc(a.mother)}</p><p><strong>জন্ম তারিখ:</strong> ${esc(a.dob)}</p>
+    <p><strong>শিক্ষাপ্রতিষ্ঠান / পেশা:</strong> ${esc(a.institute)}</p><p><strong>ঠিকানা:</strong> ${esc(a.address)}</p></div><img src="${safeImg(a.photo)}" class="w-32 h-32 border"></div>`;
+  window.print();
+}
+
+/* ============ PREMIUM UI LAYER ============ */
+const io='IntersectionObserver'in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);if(e.target.classList.contains('stat-card'))countUp(e.target.querySelector('b'))}}),{threshold:.1,rootMargin:'0px 0px -6% 0px'}):null;
+function countUp(el){const t=+el.dataset.t||0,f=+el.dataset.c||0,s=performance.now();el.dataset.c=t;(function step(n){const p=Math.min(1,(n-s)/900);el.textContent=Math.round(f+(t-f)*(1-Math.pow(1-p,3))).toLocaleString('bn-BD');if(p<1)requestAnimationFrame(step)})(s)}
+function enhance(){
+  document.querySelectorAll('[data-stat]').forEach(el=>{el.dataset.t=Object.keys(appData[el.dataset.stat]||{}).length;if(el.closest('.stat-card').classList.contains('in'))countUp(el)});
+  document.querySelectorAll('#memberGrid img,#achievementsGrid img,#galleryGrid img,#leadersGrid img').forEach(i=>{i.loading='lazy';i.decoding='async';i.onerror=()=>{i.onerror=null;i.src=PH}});
+  document.querySelectorAll('#memberGrid>*,#achievementsGrid>*,#galleryGrid>*,#leadersGrid>*,#about .grid>div,#apply>div,.stat-card,.act-card,section h3').forEach(el=>{
+    if(el.classList.contains('reveal'))return;
+    el.classList.add('reveal');el.style.setProperty('--d',(Array.prototype.indexOf.call(el.parentNode.children,el)%6)*80+'ms');
+    io?io.observe(el):el.classList.add('in');
+  });
+}
+(function(){
+  const hdr=document.querySelector('header'),bar=g('scrollBar'),mob=g('mobMenu'),btn=g('menuBtn');
+  mob.innerHTML=[...document.querySelectorAll('header nav a')].map(a=>`<a href="${a.getAttribute('href')}">${a.textContent}</a>`).join('');
+  btn.onclick=()=>{mob.style.setProperty('--hh',hdr.offsetHeight+'px');const o=mob.classList.toggle('open');btn.innerHTML=`<i class="fa-solid ${o?'fa-xmark':'fa-bars'}"></i>`};
+  mob.onclick=e=>{if(e.target.tagName==='A'){mob.classList.remove('open');btn.innerHTML='<i class="fa-solid fa-bars"></i>'}};
+  const ids=['hero','about','members','achievements','apply','gallery','contact'];
+  function onScroll(){
+    const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+    bar.style.width=(h>0?y/h*100:0)+'%';hdr.classList.toggle('glass',y>30);g('toTop').classList.toggle('show',y>600);
+    let cur='hero';ids.forEach(id=>{const el=g(id);if(el&&el.getBoundingClientRect().top<=140)cur=id});
+    document.querySelectorAll('header nav a,#mobMenu a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  g('toTop').onclick=()=>scrollTo({top:0,behavior:'smooth'});
+
+  // Lightbox (zoom, prev/next, keyboard, swipe)
+  const lb=g('lb'),img=g('lbImg'),cap=lb.querySelector('.lb-cap'),cnt=lb.querySelector('.lb-count');let L=[],I=0;
+  function show(i){
+    I=(i+L.length)%L.length;const it=L[I];
+    img.classList.remove('zoom','swap');void img.offsetWidth;img.src=it.src;img.alt=it.t;img.classList.add('swap');
+    cap.querySelector('b').textContent=it.t;cap.querySelector('span').textContent=it.s;cnt.textContent=(I+1).toLocaleString('bn-BD')+' / '+L.length.toLocaleString('bn-BD');
+    lb.querySelector('.lb-prev').style.display=lb.querySelector('.lb-next').style.display=L.length>1?'grid':'none';
+    [I-1,I+1].forEach(j=>{const o=L[(j+L.length)%L.length];if(o)new Image().src=o.src});
+  }
+  const closeLb=()=>{lb.classList.remove('open');document.body.style.overflow=''};
+  document.addEventListener('click',e=>{
+    const card=e.target.closest('#memberGrid>div,#achievementsGrid>div,#galleryGrid>div,#leadersGrid>div');
+    if(!card||e.target.closest('a'))return;
+    const grid=card.parentElement;if(grid.id!=='galleryGrid'&&e.target.tagName!=='IMG')return;
+    const cards=[...grid.children];
+    L=cards.map(c=>{const h=c.querySelector('h4'),p=c.querySelector('p');return{src:c.querySelector('img').src,t:(h||p||{}).textContent?.trim()||'',s:h&&p?p.textContent.trim():''}});
+    lb.classList.add('open');document.body.style.overflow='hidden';show(cards.indexOf(card));
+  });
+  lb.querySelector('.lb-close').onclick=closeLb;lb.querySelector('.lb-prev').onclick=()=>show(I-1);lb.querySelector('.lb-next').onclick=()=>show(I+1);
+  lb.addEventListener('click',e=>{if(e.target===lb||e.target.id==='lbStage')closeLb()});
+  img.onclick=e=>{if(!img.classList.contains('zoom')){const r=img.getBoundingClientRect();img.style.transformOrigin=((e.clientX-r.left)/r.width*100)+'% '+((e.clientY-r.top)/r.height*100)+'%'}img.classList.toggle('zoom')};
+  document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')show(I-1);if(e.key==='ArrowRight')show(I+1)});
+  let sx=0;lb.addEventListener('touchstart',e=>sx=e.changedTouches[0].clientX,{passive:true});
+  lb.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50&&!img.classList.contains('zoom'))show(I+(d<0?1:-1))});
+})();
+
+buildPanes();
+window.onload=loadData;
+</script>
+</body>
+</html>
